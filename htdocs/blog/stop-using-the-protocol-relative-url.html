@@ -1,0 +1,160 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<title>
+			Stop Using the Protocol-relative URL - Jeremy Wagner
+		</title>
+		<meta name="robots" content="noindex, nofollow">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="description" content="Using the protocol-relative URL has long been touted as a best practice, but its continued use can be detrimental to performance. Read on to find out more.">
+		<meta name="og:description" content="Using the protocol-relative URL has long been touted as a best practice, but its continued use can be detrimental to performance. Read on to find out more.">
+		<meta name="og:title" content="Stop Using the Protocol-relative URL">
+		<meta name="og:image" content="/img/blog/stop-using-the-protocol-relative-url/og-image.png">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fjord+One|Montserrat:400,700|Tinos:400,700" type="text/css">
+		<link rel="stylesheet" href="/css/global.css" type="text/css">
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://jeremywagner.me/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://jeremywagner.me/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://jeremywagner.me/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://jeremywagner.me/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://jeremywagner.me/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://jeremywagner.me/apple-touch-icon-152x152.png">
+		<link rel="icon" type="image/png" href="https://jeremywagner.me/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="https://jeremywagner.me/favicon-16x16.png" sizes="16x16">
+		<meta name="application-name" content="Jeremy Wagner's Web Development Blog">
+		<meta name="msapplication-TileColor" content="#FFFFFF">
+		<meta name="msapplication-TileImage" content="https://jeremywagner.me/mstile-144x144.png">
+		<script>document.documentElement.classList.remove("no-js");</script>
+	</head>
+	<body>
+		<div id="page-fade"></div>
+		<!-- Begin Content -->
+		<section class="columns">
+			<header>
+				<a href="/">
+					<img src="/img/global/jeremy.svg" alt="Jeremy!" id="jeremy">
+					<div class="title-container">
+						<h1 class="name">Jeremy Wagner's</h1>
+						<h2 class="site">Web Dev<span class="abbreviation">elopment</span> Blog</h2>
+						<h4 class="tagline">Featuring occasional rambling diatribes about other things.</h4>
+					</div>
+				</a>
+				<div id="nav-icon">
+					<div class="hamburger-bar"></div>
+					<div class="hamburger-bar-spacer"></div>
+					<div class="hamburger-bar"></div>
+					<div class="hamburger-bar-spacer"></div>
+					<div class="hamburger-bar"></div>
+				</div>
+			</header>
+			<nav>
+				<div id="nav-container">
+					<ul class="menu">
+						<div id="close-nav"></div>
+						<li class="menu-item">
+							<a href="/about-me.html" class="menu-link">About Me</a>
+						</li>
+						<li class="menu-item">
+							<a href="/lets-work-together.html" class="menu-link">Let's Work Together</a>
+						</li>
+						<li class="menu-item">
+							<a href="/book" target="_blank" class="menu-link">Buy my Book</a>
+							<a href="/book" class="book-link" target="_blank">
+								<picture>
+									<source srcset="/img/global/book-1x.webp 1x, /img/global/book-2x.webp 2x" type="image/webp">
+									<source srcset="/img/global/book-1x.png 1x, /img/global/book-2x.png 2x" type="image/png">
+									<img class="book-image" src="/img/global/book-1x.png">
+								</picture>
+							</a>
+							<noscript>
+								<a href="/book" class="book-link" target="_blank"><img class="book-image" src="/img/global/book-1x.png" srcset="/img/global/book-1x.png 1x, /img/global/book-2x.png 2x"></a>
+							</noscript>
+						</li>
+						<li class="menu-item">
+							<a href="/speaker-info.html" class="menu-link">Speaker Info</a>
+						</li>
+					</ul>
+					<div class="social">
+						<a href="https://twitter.com/malchata" target="_blank" class="twitter"></a>
+						<a href="https://www.linkedin.com/in/jeremy-wagner-ab238738" target="_blank" class="linked-in"></a>
+						<a href="https://github.com/malchata" target="_blank" class="github"></a>
+						<a href="mailto:public@jeremywagner.me" target="_blank" class="email"></a>
+					</div>
+					<p class="footer-copy">All content &copy; <?php echo(date("Y")); ?> Jeremy Wagner, unless where otherwise noted.</p>
+				</div>
+			</nav>
+			<section class="content">
+				<!-- Begin Post -->
+				<article class="post">
+					<h1>Stop Using the Protocol-relative URL</h1>
+					<p class="date">July 22, 2016</date>
+					<p>Paul Irish, one of the prominent developers in the pantheon of web gods, <a href="http://www.paulirish.com/2010/the-protocol-relative-url" target="_blank">wrote about the protocol-relative URL</a> way back in 2010. It was a convenient little post that advised developers to abandon absolute protocol URL schemes using <code>http://</code> or <code>https://</code> in favor of a protocol-relative variant that looks something like this:</p>
+<div class="code-container">
+<pre><code>
+&lt;script src=&quot;//code.jquery.com/jquery-2.2.3.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</div>
+					<p>This convenient syntax eliminates the need for developers to construct URLs based on the user's current security context. If this syntax was used on an HTTP page to include something from a CDN, it retrieved the HTTP version. If the user used it on an HTTPS page, it retrieved the HTTPS version. Seems like a hell of an idea, right?</p>
+					<figure>
+						<picture>
+							<source srcset="/img/blog/stop-using-the-protocol-relative-url/gomer-pyle-1x.webp 1x, img/blog/stop-using-the-protocol-relative-url/gomer-pyle-2x.webp 2x" type="image/webp">
+							<source srcset="/img/blog/stop-using-the-protocol-relative-url/gomer-pyle-1x.jpg 1x, /img/blog/stop-using-the-protocol-relative-url/gomer-pyle-1x.jpg 2x" type="image/jpeg">
+							<img class="figure-image" src="/img/blog/stop-using-the-protocol-relative-url/gomer-pyle-1x.jpg" alt="What could possibly go wrong?">
+						</picture>
+						<figcaption>
+							<span>What could possibly go wrong?</span>
+						</figcaption>
+					</figure>
+					<p>When Paul Irish wrote about this in 2010, it was a great piece of advice. We were living in a time when the web only adopted HTTPS when product owners and developers deemed it necessary, such as when viewing or entering sensitive information. The web is different now, though. We are rapidly moving toward a &quot;secure by default&quot; mindset, even for content that may not be considered sensitive. This is a <i>good thing</i>.</p>
+					<p>Paul Irish has since changed his stance, and now advises against using this URL scheme to reference cross-origin resources. His rationale is that while using the scheme on HTTPS pages is safe, the reverse is not true. Using the scheme on an HTTP page will retrieve cross-origin assets in an insecure fashion. This is not good, and it's rather easy to just slap an <code>https://</code> protocol on your URLs to ensure that your site is requesting encrypted assets.</p>
+					<p>The problem isn't only with security. This URL scheme has the potential to also impact performance. Many of the new and shiny features that are starting to come into prominence will only work if SSL is enabled, and if you're using CDN-hosted resources over HTTP, you're missing out.</p>
+					<h2>HTTP/2</h2>
+					<p>The biggest thing you're missing out on if you use the protocol-relative URL over HTTP to reference CDN assets is HTTP/2. Without parroting too much of what so many bloggers have already said out there, HTTP/2 solves a number of performance problems for us. The big one is that it solves the head of line blocking problem present in HTTP/1. In HTTP/1, requests are batched together and executed six at a time. The next batch of six requests, however, can't begin to download until <i>all</i> of the requests in the previous batch have been fulfilled.</p>
+					<p>If you have a website that grabs a lot of resources from a single CDN over an insecure connection, you could actually be forcing an HTTP <i>downgrade</i> if that server supports HTTP/2. Below, you can see a request for <code>jquery.min.js</code> on <a href="https://cdnjs.com" target="_blank">Cloudflare's CDN</a> on both HTTP and HTTPS:</p>
+					<figure>
+						<picture>
+							<source srcset="/img/blog/stop-using-the-protocol-relative-url/https-vs-http-1x.webp 1x, img/blog/stop-using-the-protocol-relative-url/https-vs-http-2x.webp 2x" type="image/webp">
+							<source srcset="/img/blog/stop-using-the-protocol-relative-url/https-vs-http-1x.png 1x, /img/blog/stop-using-the-protocol-relative-url/https-vs-http-1x.png 2x" type="image/png">
+							<img class="figure-image" src="/img/blog/stop-using-the-protocol-relative-url/https-vs-http-1x.png" alt="Note the values of the protocol and scheme columns.">
+						</picture>
+						<figcaption>
+							<span>Note the values of the protocol and scheme columns.</span>
+						</figcaption>
+					</figure>
+					<p>You can see that when the resource is requested over HTTPS, the value of the protocol column is &quot;h2&quot;, which signifies that the resource is being transmitted using HTTP/2. However, when the same resource is requested on the same domain over an insecure HTTP connection, the connection downgrades to HTTP/1.1.</p>
+					<p>Head of line blocking isn't the only reason to embrace HTTP/2. This new protocol compresses headers that are transmitted with requests and responses, something that HTTP/1 has failed to address. If you want to shave a few more bytes off of those requests, then slap that <code>https://</code> on your CDN references.</p>
+					<p><b>Side note:</b> HTTP/2 isn't the only protocol you might be missing out on, either. Google Fonts uses the QUIC protocol, which uses UDP rather than TCP. Like HTTP/2, this protocol requires an HTTPS connection.</p>
+					<h2>Brotli</h2>
+					<p>Google's been hard at work on <a href="https://github.com/google/brotli">Brotli</a>, its contender to the venerable gzip. Brotli support now ships with Chrome as of version 50, and Firefox has supported it since version 44. Other Chromium-based browsers such as Opera 38+ are throwing in support for it, as well.</p>
+					<p><a href="http://google-opensource.blogspot.com/2015/09/introducing-brotli-new-compression.html" target="_blank">Google has sung the praises of Brotli</a>, and has even used it to compress WOFF2 font files in a standalone fashion, yielding another 30% savings over its WOFF predecessor. When used on web servers, it can be a mixed blessing. I'm currently using a build of <a href="https://github.com/kjdev/apache-mod-brotli" target="_blank">mod_brotli</a> for this site, and it yields a modest performance gain of only around 3-5% at the default settings when compared to gzip running under its default settings.</p>
+					<p>In my book <a href="/book" target="_blank">Web Performance in Action</a>, I noted that the gains are relatively modest unless you're using very high compression settings. The problem with this, though, is that the compression takes so long that it actually performs <i>worse</i> than gzip. There are some ways around this, particularly if you cache the compressed result on disk, and serve that content on subsequent requests. This approach is called static compression. With it, we can realize some serious performance gains using Brotli without suffering from its current performance problems at high compression settings.</p>
+					<p>The thing about Brotli is that, like HTTP/2, you <i>must</i> be using HTTPS in order to benefit from it. Currently, Google Fonts serves CSS using Brotli (and HTTP/2!) over HTTPS, and gzip over HTTP. This may not sound like a big deal, but there are two things to remember about Brotli:</p>
+					<ol>
+						<li>Not all CDNs have fully adopted Brotli, but they likely will at some point. When they eventually do, they have tremendous resources to statically compress content, and serve it to the client without performance penalties.</li>
+						<li>Brotli is a nascent technology compared to gzip, which has been around for quite a long time. As Brotli changes, its performance could change.</li>
+					</ol>
+					<p>In short, if you persist in using the protocol-relative URL from an insecure origin, you might be cheating yourself of a new compression technology when referencing CDN assets. If you can squeeze a little more performance out of a page with little effort, wouldn't you want to?</p>
+					<h2>Isn't HTTPS Slow?</h2>
+					<p>The short answer? No</a>.</p>
+					<p>The (somewhat) longer answer: On HTTP/1.1? Potentially, since more than one connection is opened per origin, and the overhead of setting up a secure connection occurs more often. On HTTP/2, there is only one connection per origin, so this process only occurs once. Furthermore, modern hardware renders the impact of HTTPS overhead to be far less significant than it may have been mere years ago. If you want to know more, visit <a href="https://istlsfastyet.com" target="_blank">IsTLSFastYet.com</a>.</p>
+					<p>The last thing you should be worried about with your references to CDN assets is HTTPS performance. If anything can mitigate whatever performance issues exist, it's the deep pockets of companies like Google that can invest in more resources to lessen the impact. Furthermore, if your CDN is running HTTP/2, HTTPS performance is a non-issue when you consider the performance benefits that it provides.</p>
+					<h2>Conclusion</h2>
+					<p>If you've been referencing cross-origin resources with the protocol-relative URL scheme, it's time to stop. Especially if you're doing so from an insecure origin. You're likely missing out on the performance benefits of HTTP/2, and maybe missing out on Brotli compressed content. There may even be more performance benefits that you're missing out on that I haven't listed here. If you know of any, pipe up in the comments!</p>
+					<p>Hopefully this little post has proved useful to you. We all have a part in making the web faster for everyone, which is usually no small task. Except for the advice prescribed in this post. It's a small task. If we all embark on it, it can inch us a little bit closer to a faster and more secure web for everybody. It's incremental change we can all get behind.</p>
+					<p>
+						Cheers,<br>
+						-j
+					</p>
+				</article>
+				<!-- End Post -->
+			</section>
+		</section>
+		<!-- End Content -->
+		<footer>
+			<p class="footer-copy">All content &copy; <?php echo(date("Y")); ?> Jeremy Wagner, unless where otherwise noted.</p>
+		</footer>
+		<script src="/js/debounce.js" defer></script>
+		<script src="/js/nav.js" defer></script>
+		<script src="/js/attach-nav.js" defer></script>
+		<script src="/sw-install.js" async></script>
+	</body>
+</html>

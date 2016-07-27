@@ -1,0 +1,24 @@
+{
+  "name": "ch9-service-worker",
+  "version": "1.0.0",
+  "description": "Chapter 9 work for implementing service workers from the book Web Performance in Action.",
+  "main": "https.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webopt/ch9-service-workers.git"
+  },
+  "author": "Jeremy Wagner <jeremy.l.wagner@gmail.com> (http://jeremywagner.me/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webopt/ch9-service-workers/issues"
+  },
+  "homepage": "https://github.com/webopt/ch9-service-workers#readme",
+  "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "https": "^1.0.0"
+  }
+}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<title>
+			Home - Jeremy Wagner
+		</title>
+		<meta name="robots" content="noindex, nofollow">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="description" content="The web development blog of developer, author and speaker Jeremy Wagner. Occasionally strays off into non-technical (i.e., rambling) topics.">
+		<meta name="og:description" content="The web development blog of developer, author and speaker Jeremy Wagner. Occasionally strays off into non-technical (i.e., rambling) topics.">
+		<meta name="og:title" content="Home">
+		<meta name="og:image" content="/img/global/site-og-image.png">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fjord+One|Montserrat:400,700|Tinos:400,700" type="text/css">
+		<link rel="stylesheet" href="/css/global.css" type="text/css">
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://jeremywagner.me/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://jeremywagner.me/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://jeremywagner.me/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://jeremywagner.me/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://jeremywagner.me/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://jeremywagner.me/apple-touch-icon-152x152.png">
+		<link rel="icon" type="image/png" href="https://jeremywagner.me/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="https://jeremywagner.me/favicon-16x16.png" sizes="16x16">
+		<meta name="application-name" content="Jeremy Wagner's Web Development Blog">
+		<meta name="msapplication-TileColor" content="#FFFFFF">
+		<meta name="msapplication-TileImage" content="https://jeremywagner.me/mstile-144x144.png">
+		<script>document.documentElement.classList.remove("no-js");</script>
+	</head>
+	<body>
+		<div id="page-fade"></div>
+		<!-- Begin Content -->
+		<section class="columns">
+			<header>
+				<a href="/">
+					<img src="/img/global/jeremy.svg" alt="Jeremy!" id="jeremy">
+					<div class="title-container">
+						<h1 class="name">Jeremy Wagner's</h1>
+						<h2 class="site">Web Dev<span class="abbreviation">elopment</span> Blog</h2>
+						<h4 class="tagline">Featuring occasional rambling diatribes about other things.</h4>
+					</div>
+				</a>
+				<div id="nav-icon">
+					<div class="hamburger-bar"></div>
+					<div class="hamburger-bar-spacer"></div>
+					<div class="hamburger-bar"></div>
+					<div class="hamburger-bar-spacer"></div>
+					<div class="hamburger-bar"></div>
+				</div>
+			</header>
+			<nav>
+				<div id="nav-container">
+					<ul class="menu">
+						<div id="close-nav"></div>
+						<li class="menu-item">
+							<a href="/about-me.html" class="menu-link">About Me</a>
+						</li>
+						<li class="menu-item">
+							<a href="/lets-work-together.html" class="menu-link">Let's Work Together</a>
+						</li>
+						<li class="menu-item">
+							<a href="/book" target="_blank" class="menu-link">Buy my Book</a>
+							<a href="/book" class="book-link" target="_blank">
+								<picture>
+									<source srcset="/img/global/book-1x.webp 1x, /img/global/book-2x.webp 2x" type="image/webp">
+									<source srcset="/img/global/book-1x.png 1x, /img/global/book-2x.png 2x" type="image/png">
+									<img class="book-image" src="/img/global/book-1x.png">
+								</picture>
+							</a>
+							<noscript>
+								<a href="/book" class="book-link" target="_blank"><img class="book-image" src="/img/global/book-1x.png" srcset="/img/global/book-1x.png 1x, /img/global/book-2x.png 2x"></a>
+							</noscript>
+						</li>
+						<li class="menu-item">
+							<a href="/speaker-info.html" class="menu-link">Speaker Info</a>
+						</li>
+					</ul>
+					<div class="social">
+						<a href="https://twitter.com/malchata" target="_blank" class="twitter"></a>
+						<a href="https://www.linkedin.com/in/jeremy-wagner-ab238738" target="_blank" class="linked-in"></a>
+						<a href="https://github.com/malchata" target="_blank" class="github"></a>
+						<a href="mailto:public@jeremywagner.me" target="_blank" class="email"></a>
+					</div>
+					<p class="footer-copy">All content &copy; <?php echo(date("Y")); ?> Jeremy Wagner, unless where otherwise noted.</p>
+				</div>
+			</nav>
+			<section class="content">
+				<!-- Begin Post Summary -->
+				<article class="post summary">
+					<h1><a href="/blog/stop-using-the-protocol-relative-url.html">Stop Using the Protocol-relative URL</a></h1>
+					<p class="date">July 21, 2016</date>
+					<p>Paul Irish, one of the prominent developers in the pantheon of web gods, <a href="http://www.paulirish.com/2010/the-protocol-relative-url" target="_blank">wrote about the protocol-relative URL</a> way back in 2010. It was a convenient little post that advised developers to abandon absolute protocol URL schemes using <code>http://</code> or <code>https://</code> in favor of a protocol-relative variant that looks something like this:</p>
+<div class="code-container">
+<pre><code>
+&lt;script src=&quot;//code.jquery.com/jquery-2.2.3.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</div>
+					<p>This convenient syntax eliminates the need for developers to construct URLs based on the user's current security context. If this syntax was used on an HTTP page to include something from a CDN, it retrieved the HTTP version. If the user used it on an HTTPS page, it retrieved the HTTPS version. Seems like a hell of an idea, right?</p>
+					<a href="/blog/stop-using-the-protocol-relative-url.html" class="read-more">Read More &raquo;</a>
+				</article>
+				<!-- End Post Summary -->
+				<!-- Begin Post Summary -->
+				<article class="post summary">
+					<h1><a href="/blog/svg-media-query.html">Cutting Cruft with an SVG Media Query</a></h1>
+					<p class="date">May 25, 2016</date>
+					<p>This isn’t a huge success story, but I thought it was sufficiently spiffy to warrant a short post about an SVG media query that helped me to cut an unnecessary image from a client's website while still accommodating their design. Who knows? This short post may help you some day.</p>
+					<p>Not too long ago, I developed a static site for <a href="http://weeklytimber.com" target="_blank">Weekly Timber &amp; Pulp</a>, a logging business in Central Wisconsin. The designer on the project whipped up some comps with two breakpoints: One for phones and tablets in portrait view, and another for tablets in landscape view and larger. The designer is a good friend of mine, and loves to throw me a curve ball every now and again. So he gave the site’s logo a different treatment for each breakpoint.</p>
+					<a href="/blog/svg-media-query.html" class="read-more">Read More &raquo;</a>
+				</article>
+				<!-- End Post Summary -->
+				<!-- Begin Post Summary -->
+				<article class="post summary">
+					<h1><a href="/blog/webp-images.html">Using WebP Images</a></h1>
+					<p class="date">April 25, 2016</date>
+					<p>We've all been there before: You're browsing a website that has a ton of huge and beautiful images of delicious food, or maybe that new gadget you've been eyeballing. These images tug at your senses, and for content authors, they're essential in moving people to do things.</p>
+					<p>Except that these images are downright huge. Like really huge. On a doddering mobile connection, you can even see these images unfurl before you like a descending window shade. You're suddenly reminded of the bad old days of dial-up connections.</p>
+					<a href="/blog/webp-images.html" class="read-more">Read More &raquo;</a>
+				</article>
+				<!-- End Post Summary -->
+			</section>
+		</section>
+		<!-- End Content -->
+		<footer>
+			<p class="footer-copy">All content &copy; <?php echo(date("Y")); ?> Jeremy Wagner, unless where otherwise noted.</p>
+		</footer>
+		<script src="/js/debounce.js" defer></script>
+		<script src="/js/nav.js" defer></script>
+		<script src="/js/attach-nav.js" defer></script>
+		<script src="/sw-install.js" async></script>
+	</body>
+</html>
