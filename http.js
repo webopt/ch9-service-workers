@@ -19,7 +19,12 @@ app.use(express.static(path.join(__dirname, pubDir), {
 			case "text/javascript":
 			case "application/javascript":
 			case "text/css":
-				res.setHeader("Cache-Control", "public, max-age=" + (60*60*24*30));
+				if(path.indexOf("/sw.js") !== -1){
+					res.setHeader("Cache-Control", "no-cache");
+				}
+				else{
+					res.setHeader("Cache-Control", "no-cache, public, max-age=" + (60*60*24*30));
+				}
 			break;
 
 			case "image/png":
